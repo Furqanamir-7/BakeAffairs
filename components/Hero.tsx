@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { site } from "@/lib/site";
 import { ArrowRight, LeafSprig } from "./icons";
+
+const CakeShowcase = dynamic(() => import("./CakeShowcase"), { ssr: false });
 
 export default function Hero() {
   return (
@@ -70,7 +73,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Hero visual — layered placeholder card */}
+        {/* Hero visual — interactive 3D wireframe cake */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -78,20 +81,43 @@ export default function Hero() {
           className="relative mx-auto w-full max-w-md lg:max-w-none"
         >
           <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-accent/60 to-primary/30 blur-xl" />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] border border-secondary/15 bg-parchment shadow-lift">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent via-parchment to-primary/30" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="animate-floaty text-[7rem] leading-none drop-shadow-sm">
-                🎂
-              </span>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] border border-secondary/20 bg-espresso shadow-lift">
+            {/* warm radial glow behind the cake */}
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(196,149,106,0.28),transparent_60%)]" />
+
+            {/* the interactive cake */}
+            <CakeShowcase />
+
+            {/* globe-style floating data labels */}
+            <div className="pointer-events-none absolute right-3 top-4 rounded-lg bg-espresso/85 px-3 py-2 shadow-soft ring-1 ring-primary/25 backdrop-blur-sm">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">
+                Tiers
+              </p>
+              <p className="font-serif text-sm text-accent">3 layers stacked</p>
+              <p className="text-[10px] text-accent/55">
+                Vanilla · Choc · Velvet
+              </p>
             </div>
-            <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-background/85 px-5 py-4 backdrop-blur-sm">
-              <p className="font-script text-xl italic text-secondary">
-                Signature
+
+            <div className="pointer-events-none absolute left-3 top-1/3 rounded-lg bg-espresso/85 px-3 py-2 shadow-soft ring-1 ring-primary/25 backdrop-blur-sm">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">
+                Topping
               </p>
-              <p className="font-serif text-lg text-espresso">
-                Custom celebration cakes
-              </p>
+              <p className="font-serif text-sm text-accent">Cherries &amp; cream</p>
+            </div>
+
+            <div className="pointer-events-none absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3">
+              <div className="rounded-2xl bg-background/90 px-5 py-4 backdrop-blur-sm">
+                <p className="font-script text-xl italic text-secondary">
+                  Signature
+                </p>
+                <p className="font-serif text-lg text-espresso">
+                  Custom celebration cakes
+                </p>
+              </div>
+              <span className="hidden rounded-full bg-primary/90 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wide text-espresso sm:inline-block">
+                Drag to spin
+              </span>
             </div>
           </div>
 

@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #c4956a;
+  color: #faf6f1;
+}
+
+/* Thin, elegant scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f0e6d6;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4956a;
+  border-radius: 999px;
+  border: 2px solid #f0e6d6;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b5e3c;
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-6xl px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-script italic text-secondary text-xl sm:text-2xl;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl sm:text-4xl md:text-5xl text-espresso leading-tight;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-all duration-300;
+  }
+
+  .btn-filled {
+    @apply btn bg-secondary text-background shadow-soft hover:bg-espresso hover:shadow-lift hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply btn border border-secondary/50 text-secondary hover:bg-secondary hover:text-background hover:-translate-y-0.5;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,10 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { navLinks, site } from "@/lib/site";
+import Logo from "@/components/Logo";
+import { navLinks } from "@/lib/site";
+
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -22,39 +31,53 @@ export default function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  const linkClass = (href: string) => {
+    const active = isActive(pathname, href);
+    return `group relative text-sm font-medium tracking-wide transition-colors ${
+      active ? "text-secondary" : "text-cream/75 hover:text-cream"
+    }`;
+  };
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 overflow-visible border-b transition-all duration-300 ${
         scrolled || open
-          ? "bg-background/95 shadow-soft backdrop-blur-md"
-          : "bg-transparent"
+          ? "border-primary/30 bg-espresso/95 shadow-soft backdrop-blur-md"
+          : "border-primary/20 bg-maroon-band"
       }`}
     >
-      <nav className="container-px flex h-20 items-center justify-between">
-        <a
-          href="#home"
-          className="font-serif text-2xl tracking-tight text-espresso"
+      <nav className="container-px flex h-20 items-center justify-between sm:h-24">
+        <Link
+          href="/"
+          className="rounded-2xl transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50"
+          aria-label="Bake Affairs by Ayesha — home"
         >
-          {site.name}
-          <span className="text-primary">.</span>
-        </a>
+          <Logo size="header" priority className="drop-shadow-logo" />
+        </Link>
 
-        <ul className="hidden items-center gap-9 md:flex">
+        <ul className="hidden items-center gap-7 lg:gap-8 xl:gap-9 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="group relative text-sm font-medium tracking-wide text-espresso/80 transition-colors hover:text-secondary"
-              >
+              <Link href={link.href} className={linkClass(link.href)}>
                 {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-secondary transition-all duration-300 group-hover:w-full" />
-              </a>
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-px transition-all duration-300 ${
+                    isActive(pathname, link.href)
+                      ? "w-full bg-secondary"
+                      : "w-0 bg-secondary group-hover:w-full"
+                  }`}
+                />
+              </Link>
             </li>
           ))}
           <li>
-            <a href="#order" className="btn-filled !px-6 !py-2.5">
+            <Link href="/order" className="btn-peach !px-6 !py-2.5">
               Order Now
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -66,17 +89,17 @@ export default function Navbar() {
           className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
         >
           <span
-            className={`h-0.5 w-6 rounded-full bg-espresso transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
               open ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 rounded-full bg-espresso transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
               open ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 rounded-full bg-espresso transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
               open ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
@@ -90,28 +113,25 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-secondary/10 bg-background md:hidden"
+            className="overflow-hidden border-t border-primary/25 bg-espresso md:hidden"
           >
             <ul className="container-px flex flex-col gap-1 py-6">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-xl px-3 py-3 font-serif text-xl text-espresso transition-colors hover:bg-parchment"
+                    className={`block rounded-xl px-3 py-3 font-serif text-xl transition-colors hover:bg-surface ${
+                      isActive(pathname, link.href) ? "text-secondary" : "text-cream"
+                    }`}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="pt-2">
-                <a
-                  href="#order"
-                  onClick={() => setOpen(false)}
-                  className="btn-filled w-full"
-                >
+                <Link href="/order" className="btn-peach w-full">
                   Order Now
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>

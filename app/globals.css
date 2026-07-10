@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 7rem;
 }
 
 body {
@@ -17,24 +17,23 @@ body {
 }
 
 ::selection {
-  background-color: #c4956a;
-  color: #faf6f1;
+  background-color: #e78b67;
+  color: #1a0404;
 }
 
-/* Thin, elegant scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f0e6d6;
+  background: #3d0c0c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c4956a;
+  background: #e78b67;
   border-radius: 999px;
-  border: 2px solid #f0e6d6;
+  border: 2px solid #3d0c0c;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #8b5e3c;
+  background: #fbc9a4;
 }
 
 @layer components {
@@ -47,7 +46,11 @@ body {
   }
 
   .section-title {
-    @apply font-serif text-3xl sm:text-4xl md:text-5xl text-espresso leading-tight;
+    @apply font-serif text-3xl sm:text-4xl md:text-5xl leading-tight text-transparent bg-clip-text bg-gradient-to-r from-cream via-peach-light to-secondary;
+  }
+
+  .text-body {
+    @apply text-cream/80;
   }
 
   .btn {
@@ -55,15 +58,50 @@ body {
   }
 
   .btn-filled {
-    @apply btn bg-secondary text-background shadow-soft hover:bg-espresso hover:shadow-lift hover:-translate-y-0.5;
+    @apply btn bg-maroon-light text-cream shadow-soft hover:bg-primary hover:shadow-lift hover:-translate-y-0.5;
   }
 
   .btn-outline {
-    @apply btn border border-secondary/50 text-secondary hover:bg-secondary hover:text-background hover:-translate-y-0.5;
+    @apply btn border border-secondary/45 text-peach-light hover:border-secondary hover:bg-secondary/15 hover:-translate-y-0.5;
+  }
+
+  .btn-peach {
+    @apply btn border border-secondary bg-secondary text-espresso shadow-soft hover:bg-peach-light hover:shadow-lift hover:-translate-y-0.5;
+  }
+
+  .marble-bg {
+    @apply bg-background bg-marble;
+  }
+
+  .section-dark {
+    @apply bg-maroon-band text-cream;
+  }
+
+  .section-surface {
+    @apply bg-surface text-cream;
+  }
+
+  .section-deep {
+    @apply bg-maroon-wash text-cream;
+  }
+
+  .card-peach {
+    @apply rounded-3xl border border-secondary/35 bg-gradient-to-br from-peach-light via-secondary to-peach-muted text-espresso shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-secondary hover:shadow-lift;
+  }
+
+  .card-dark {
+    @apply card-peach;
+  }
+
+  .peach-divider {
+    @apply mx-auto mt-4 h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-secondary to-transparent;
+  }
+
+  .page-top {
+    @apply pt-28 sm:pt-32;
   }
 }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

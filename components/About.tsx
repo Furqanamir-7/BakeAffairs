@@ -1,19 +1,23 @@
 import Reveal from "./Reveal";
 import { site } from "@/lib/site";
 
-export default function About() {
+type Props = {
+  compact?: boolean;
+};
+
+export default function About({ compact = false }: Props) {
   return (
-    <section id="about" className="bg-parchment py-20 sm:py-28">
+    <section className={`${compact ? "section-surface" : "section-deep"} py-16 sm:py-24`}>
       <div className="container-px grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <div className="relative">
-            <div className="absolute -inset-3 rounded-[2rem] bg-primary/15 blur-lg" />
-            <div className="relative aspect-[5/6] overflow-hidden rounded-[1.75rem] border border-secondary/15 bg-background shadow-soft">
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent/70 via-background to-parchment" />
+            <div className="absolute -inset-3 rounded-[2rem] bg-primary/30 blur-lg" />
+            <div className="relative aspect-[5/6] overflow-hidden rounded-[1.75rem] border-2 border-primary/40 bg-surface-deep shadow-soft">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/40 via-surface to-espresso" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-[6rem] leading-none">👩‍🍳</span>
               </div>
-              <div className="absolute bottom-5 left-5 rounded-xl bg-secondary px-4 py-3 text-background shadow-soft">
+              <div className="absolute bottom-5 left-5 rounded-xl bg-maroon-light px-4 py-3 text-cream shadow-soft">
                 <p className="font-script text-lg italic">Hello, I&apos;m</p>
                 <p className="font-serif text-xl">{site.baker}</p>
               </div>
@@ -23,11 +27,20 @@ export default function About() {
 
         <Reveal delay={0.1}>
           <div>
-            <p className="eyebrow">Our little story</p>
-            <h2 className="section-title mt-2">
-              A passion project, baked one order at a time
-            </h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-espresso/75 sm:text-lg">
+            {!compact && (
+              <>
+                <p className="eyebrow">Our little story</p>
+                <h2 className="section-title mt-2">
+                  A passion project, baked one order at a time
+                </h2>
+              </>
+            )}
+
+            <div
+              className={`text-body space-y-4 text-base sm:text-lg ${
+                compact ? "" : "mt-6"
+              }`}
+            >
               <p>
                 Bake Affairs began in {site.baker}&apos;s home kitchen in{" "}
                 {site.city} — a small space filled with the smell of warm vanilla,
@@ -52,11 +65,9 @@ export default function About() {
               ].map((stat) => (
                 <div
                   key={stat.v}
-                  className="rounded-2xl border border-secondary/15 bg-background px-4 py-5 text-center"
+                  className="card-peach px-4 py-5 text-center"
                 >
-                  <dt className="font-serif text-2xl text-secondary">
-                    {stat.k}
-                  </dt>
+                  <dt className="font-serif text-2xl text-primary">{stat.k}</dt>
                   <dd className="mt-1 text-xs font-medium tracking-wide text-espresso/60">
                     {stat.v}
                   </dd>

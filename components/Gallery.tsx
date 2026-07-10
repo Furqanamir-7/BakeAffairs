@@ -10,22 +10,32 @@ const items = [
   { caption: "Gift boxes & bundles", emoji: "🎁", span: "" },
 ];
 
-export default function Gallery() {
-  return (
-    <section id="gallery" className="bg-background py-20 sm:py-28">
-      <div className="container-px">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">A peek inside</p>
-            <h2 className="section-title mt-2">From Our Kitchen</h2>
-            <p className="mt-4 text-base leading-relaxed text-espresso/70 sm:text-lg">
-              A glimpse of recent bakes. Follow along on Instagram for the latest
-              creations.
-            </p>
-          </div>
-        </Reveal>
+type Props = {
+  compact?: boolean;
+};
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+export default function Gallery({ compact = false }: Props) {
+  return (
+    <section className={`${compact ? "section-surface" : "section-deep"} py-16 sm:py-24`}>
+      <div className="container-px">
+        {!compact && (
+          <Reveal>
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="eyebrow">A peek inside</p>
+              <h2 className="section-title mt-2">From Our Kitchen</h2>
+              <p className="text-body mt-4 text-base sm:text-lg">
+                A glimpse of recent bakes. Follow along on Instagram for the latest
+                creations.
+              </p>
+            </div>
+          </Reveal>
+        )}
+
+        <div
+          className={`grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 ${
+            compact ? "" : "mt-14"
+          }`}
+        >
           {items.map((item, i) => (
             <Reveal
               key={item.caption}
@@ -33,20 +43,16 @@ export default function Gallery() {
               className={item.span === "tall" ? "lg:row-span-2" : ""}
             >
               <figure
-                className={`group relative h-full w-full overflow-hidden rounded-3xl border border-secondary/15 bg-parchment ${
+                className={`card-peach group relative h-full w-full overflow-hidden ${
                   item.span === "tall" ? "min-h-[18rem] lg:min-h-[26rem]" : "min-h-[14rem]"
                 }`}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/60 via-parchment to-primary/20" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-secondary/70">
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-primary/70">
                   <span className="text-5xl opacity-90">{item.emoji}</span>
                   <CameraIcon className="h-7 w-7 opacity-50" />
                 </div>
-                {/* hover caption overlay */}
-                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-espresso/85 to-transparent p-5 pt-12 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  <span className="font-serif text-lg text-background">
-                    {item.caption}
-                  </span>
+                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-primary/90 to-transparent p-5 pt-12 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <span className="font-serif text-lg text-cream">{item.caption}</span>
                 </figcaption>
               </figure>
             </Reveal>

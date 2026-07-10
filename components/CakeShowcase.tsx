@@ -3,10 +3,27 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-const GOLD = 0xd9b779;
-const GOLD_SOFT = 0xc4956a;
-const CREAM = 0xe8d5b7;
-const BERRY = 0xd98a7a;
+const C = {
+  sponge: 0xf0a898,
+  spongeAlt: 0xf5b8a8,
+  frost: 0xfff5ef,
+  frostBlush: 0xffe4d6,
+  cherry: 0xd4566a,
+  board: 0x922a28,
+  candle: 0xffffff,
+  flame: 0xffc857,
+  sprinkle: [0xffb3c1, 0xfbc9a4, 0xffe4ec, 0xe78b67],
+};
+
+function disposeObject(obj: THREE.Object3D) {
+  obj.traverse((child) => {
+    const mesh = child as THREE.Mesh;
+    mesh.geometry?.dispose();
+    const mat = mesh.material;
+    if (Array.isArray(mat)) mat.forEach((m) => m.dispose());
+    else mat?.dispose();
+  });
+}
 
 export default function CakeShowcase() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -21,141 +38,160 @@ export default function CakeShowcase() {
 
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-    camera.position.set(0, 1.6, 9.2);
-    camera.lookAt(0, 0.2, 0);
+    const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+    camera.position.set(0, 0.9, 5.2);
+    camera.lookAt(0, 0.15, 0);
 
-    const renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      antialias: true,
-    });
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
     renderer.domElement.style.width = "100%";
     renderer.domElement.style.height = "100%";
     renderer.domElement.style.cursor = "grab";
     renderer.domElement.style.touchAction = "pan-y";
 
+    scene.add(new THREE.AmbientLight(0xfff0ea, 0.7));
+    const key = new THREE.DirectionalLight(0xffffff, 0.9);
+    key.position.set(3, 5, 4);
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0xffc4b0, 0.45);
+    fill.position.set(-4, 1, -3);
+    scene.add(fill);
+
     const cake = new THREE.Group();
     scene.add(cake);
 
-    const mat = (color: number, opacity = 0.85) =>
-      new THREE.LineBasicMaterial({
+    const soft = (color: number) =>
+      new THREE.MeshStandardMaterial({
         color,
-        transparent: true,
-        opacity,
+        roughness: 0.72,
+        metalness: 0,
       });
 
-    // ---- Three stacked tiers (wireframe lattice like the globe) ----
-    type Tier = { radius: number; height: number; y: number };
-    const tiers: Tier[] = [
-      { radius: 2.1, height: 1.0, y: -1.35 },
-      { radius: 1.5, height: 0.85, y: -0.42 },
-      { radius: 0.95, height: 0.7, y: 0.35 },
+    const spongeA = soft(C.sponge);
+    const spongeB = soft(C.spongeAlt);
+    const frost = soft(C.frost);
+    const frostBlush = soft(C.frostBlush);
+
+    // Tiny cake plate
+    const plate = new THREE.Mesh(
+      new THREE.CylinderGeometry(1.35, 1.42, 0.08, 32),
+      soft(C.board)
+    );
+    plate.position.y = -0.72;
+    cake.add(plate);
+
+    // Two chubby tiers — cute mini cake proportions
+    const tiers = [
+      { r: 1.05, spongeH: 0.42, frostH: 0.14, y: -0.38, mat: spongeA },
+      { r: 0.72, spongeH: 0.36, frostH: 0.12, y: 0.18, mat: spongeB },
     ];
 
     tiers.forEach((t, i) => {
-      const geo = new THREE.CylinderGeometry(
-        t.radius,
-        t.radius * 1.04,
-        t.height,
-        28,
-        3,
-        true
+      const sponge = new THREE.Mesh(
+        new THREE.CylinderGeometry(t.r * 0.98, t.r * 1.02, t.spongeH, 28),
+        t.mat
       );
-      const wire = new THREE.WireframeGeometry(geo);
-      const lines = new THREE.LineSegments(
-        wire,
-        mat(i === 1 ? GOLD : GOLD_SOFT, 0.55)
+      sponge.position.y = t.y;
+      cake.add(sponge);
+
+      const cap = new THREE.Mesh(
+        new THREE.CylinderGeometry(t.r * 1.06, t.r * 0.98, t.frostH, 28),
+        i === 0 ? frostBlush : frost
       );
-      lines.position.y = t.y;
-      cake.add(lines);
+      cap.position.y = t.y + t.spongeH / 2 + t.frostH / 2;
+      cake.add(cap);
 
-      // top + bottom rims (solid bright rings for definition)
-      [t.height / 2, -t.height / 2].forEach((dy) => {
-        const ring = new THREE.Mesh(
-          new THREE.TorusGeometry(t.radius * (dy > 0 ? 1 : 1.04), 0.025, 8, 40),
-          new THREE.MeshBasicMaterial({ color: GOLD })
+      // Chubby frosting dots
+      const dots = 12 + i * 4;
+      for (let d = 0; d < dots; d++) {
+        const a = (d / dots) * Math.PI * 2;
+        const dot = new THREE.Mesh(
+          new THREE.SphereGeometry(0.035, 8, 8),
+          frost
         );
-        ring.rotation.x = Math.PI / 2;
-        ring.position.y = t.y + dy;
-        cake.add(ring);
-      });
-
-      // cream drip ring near the top edge of each tier
-      const dripCount = 14 + i * 2;
-      for (let d = 0; d < dripCount; d++) {
-        const a = (d / dripCount) * Math.PI * 2;
-        const drip = new THREE.Mesh(
-          new THREE.SphereGeometry(0.07, 8, 8),
-          new THREE.MeshBasicMaterial({ color: CREAM, transparent: true, opacity: 0.9 })
+        dot.position.set(
+          Math.cos(a) * t.r * 1.02,
+          t.y + t.spongeH / 2 + t.frostH - 0.02,
+          Math.sin(a) * t.r * 1.02
         );
-        drip.position.set(
-          Math.cos(a) * t.radius,
-          t.y + t.height / 2 - 0.04,
-          Math.sin(a) * t.radius
-        );
-        cake.add(drip);
+        cake.add(dot);
       }
     });
 
-    // ---- Cherries around the top tier ----
-    const topTier = tiers[2];
-    const cherryRingY = topTier.y + topTier.height / 2 + 0.12;
-    for (let c = 0; c < 7; c++) {
-      const a = (c / 7) * Math.PI * 2;
-      const cherry = new THREE.Mesh(
-        new THREE.SphereGeometry(0.13, 12, 12),
-        new THREE.MeshBasicMaterial({ color: BERRY })
-      );
-      cherry.position.set(
-        Math.cos(a) * (topTier.radius - 0.18),
-        cherryRingY,
-        Math.sin(a) * (topTier.radius - 0.18)
-      );
-      cake.add(cherry);
-    }
+    const top = tiers[1];
+    const topY = top.y + top.spongeH / 2 + top.frostH;
 
-    // ---- Candles on top ----
-    const candleGroup = new THREE.Group();
-    candleGroup.position.y = topTier.y + topTier.height / 2;
-    cake.add(candleGroup);
-    const flames: THREE.Mesh[] = [];
-    for (let k = 0; k < 3; k++) {
-      const a = (k / 3) * Math.PI * 2;
-      const cx = Math.cos(a) * 0.4;
-      const cz = Math.sin(a) * 0.4;
-
-      const candle = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.05, 0.05, 0.55, 10),
-        new THREE.MeshBasicMaterial({ color: CREAM })
-      );
-      candle.position.set(cx, 0.27, cz);
-      candleGroup.add(candle);
-
-      const flame = new THREE.Mesh(
-        new THREE.ConeGeometry(0.07, 0.2, 10),
-        new THREE.MeshBasicMaterial({ color: 0xffd27a })
-      );
-      flame.position.set(cx, 0.62, cz);
-      candleGroup.add(flame);
-      flames.push(flame);
-    }
-
-    // ---- a faint orbit ring (echoes the globe) ----
-    const orbit = new THREE.Mesh(
-      new THREE.TorusGeometry(3.0, 0.012, 6, 80),
-      new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.25 })
+    // Rounded dollop on top
+    const dollop = new THREE.Mesh(
+      new THREE.SphereGeometry(0.38, 20, 14),
+      frost
     );
-    orbit.rotation.x = Math.PI / 2.2;
-    orbit.position.y = -0.3;
-    scene.add(orbit);
+    dollop.scale.set(1.05, 0.65, 1.05);
+    dollop.position.y = topY + 0.12;
+    cake.add(dollop);
 
-    // ---- interaction: drag to rotate ----
+    // One plump cherry — cute focal point
+    const cherry = new THREE.Mesh(
+      new THREE.SphereGeometry(0.1, 16, 16),
+      soft(C.cherry)
+    );
+    cherry.scale.set(1, 0.92, 1);
+    cherry.position.set(0, topY + 0.38, 0);
+    cake.add(cherry);
+
+    const stem = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.008, 0.008, 0.1, 6),
+      soft(0x6b9b5e)
+    );
+    stem.position.set(0.04, topY + 0.48, 0);
+    stem.rotation.z = 0.35;
+    cake.add(stem);
+
+    // One little candle
+    const candle = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.028, 0.032, 0.28, 10),
+      soft(C.candle)
+    );
+    candle.position.set(0.22, topY + 0.22, 0.12);
+    cake.add(candle);
+
+    const flame = new THREE.Mesh(
+      new THREE.SphereGeometry(0.045, 10, 10),
+      new THREE.MeshStandardMaterial({
+        color: C.flame,
+        emissive: C.flame,
+        emissiveIntensity: 0.9,
+        roughness: 0.2,
+      })
+    );
+    flame.scale.set(1, 1.3, 1);
+    flame.position.set(0.22, topY + 0.4, 0.12);
+    cake.add(flame);
+
+    // Colorful sprinkles
+    for (let s = 0; s < 20; s++) {
+      const tier = s < 12 ? tiers[0] : tiers[1];
+      const a = (s / 20) * Math.PI * 6;
+      const r = tier.r * (0.55 + (s % 5) * 0.08);
+      const sprinkle = new THREE.Mesh(
+        new THREE.CapsuleGeometry(0.012, 0.045, 3, 6),
+        soft(C.sprinkle[s % C.sprinkle.length])
+      );
+      sprinkle.position.set(
+        Math.cos(a) * r,
+        tier.y + (s % 3) * 0.08,
+        Math.sin(a) * r
+      );
+      sprinkle.rotation.set(Math.random(), Math.random(), Math.random());
+      cake.add(sprinkle);
+    }
+
     let targetRotY = 0.4;
-    let targetRotX = 0.0;
+    let targetRotX = 0.08;
     let curRotY = 0.4;
-    let curRotX = 0.0;
+    let curRotX = 0.08;
     let dragging = false;
     let lastX = 0;
     let lastY = 0;
@@ -171,13 +207,11 @@ export default function CakeShowcase() {
     };
     const onMove = (e: PointerEvent) => {
       if (!dragging) return;
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
+      targetRotY += (e.clientX - lastX) * 0.012;
+      targetRotX += (e.clientY - lastY) * 0.007;
+      targetRotX = Math.max(-0.3, Math.min(0.35, targetRotX));
       lastX = e.clientX;
       lastY = e.clientY;
-      targetRotY += dx * 0.01;
-      targetRotX += dy * 0.006;
-      targetRotX = Math.max(-0.5, Math.min(0.6, targetRotX));
     };
     const onUp = (e: PointerEvent) => {
       dragging = false;
@@ -191,7 +225,6 @@ export default function CakeShowcase() {
     renderer.domElement.addEventListener("pointerup", onUp);
     renderer.domElement.addEventListener("pointerleave", onUp);
 
-    // ---- resize ----
     const resize = () => {
       const w = mount.clientWidth;
       const h = mount.clientHeight;
@@ -204,28 +237,26 @@ export default function CakeShowcase() {
     ro.observe(mount);
     resize();
 
-    // ---- animation loop ----
     let raf = 0;
     const clock = new THREE.Clock();
     const animate = () => {
       raf = requestAnimationFrame(animate);
       const t = clock.getElapsedTime();
 
-      if (autoSpin) targetRotY += 0.0045;
-      curRotY += (targetRotY - curRotY) * 0.08;
-      curRotX += (targetRotX - curRotX) * 0.08;
+      if (autoSpin) targetRotY += 0.006;
+      curRotY += (targetRotY - curRotY) * 0.1;
+      curRotX += (targetRotX - curRotX) * 0.1;
       cake.rotation.y = curRotY;
       cake.rotation.x = curRotX;
 
-      // gentle bob
-      cake.position.y = prefersReduced ? 0 : Math.sin(t * 1.1) * 0.08;
-      orbit.rotation.z = t * 0.15;
-
-      // flicker flames
-      flames.forEach((f, i) => {
-        const s = 1 + Math.sin(t * 8 + i) * 0.12;
-        f.scale.set(1, s, 1);
-      });
+      if (!prefersReduced) {
+        cake.position.y = Math.sin(t * 1.6) * 0.04;
+        cake.rotation.z = Math.sin(t * 1.2) * 0.03;
+        const fs = 1 + Math.sin(t * 10) * 0.18;
+        flame.scale.set(fs, fs * 1.2, fs);
+        (flame.material as THREE.MeshStandardMaterial).emissiveIntensity =
+          0.7 + Math.sin(t * 12) * 0.3;
+      }
 
       renderer.render(scene, camera);
     };
@@ -238,14 +269,8 @@ export default function CakeShowcase() {
       renderer.domElement.removeEventListener("pointermove", onMove);
       renderer.domElement.removeEventListener("pointerup", onUp);
       renderer.domElement.removeEventListener("pointerleave", onUp);
+      disposeObject(cake);
       renderer.dispose();
-      scene.traverse((obj) => {
-        const m = obj as THREE.Mesh;
-        if (m.geometry) m.geometry.dispose();
-        const mm = m.material as THREE.Material | THREE.Material[] | undefined;
-        if (Array.isArray(mm)) mm.forEach((x) => x.dispose());
-        else if (mm) mm.dispose();
-      });
       if (renderer.domElement.parentNode === mount) {
         mount.removeChild(renderer.domElement);
       }

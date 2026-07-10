@@ -24,22 +24,23 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-parchment py-20 sm:py-28">
+    <section className="section-deep py-20 sm:py-28">
       <div className="container-px">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Kind words</p>
             <h2 className="section-title mt-2">Loved by Our Customers</h2>
+            <div className="peach-divider" aria-hidden="true" />
           </div>
         </Reveal>
 
         <div className="mt-14 grid gap-7 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.1}>
-              <figure className="relative h-full rounded-3xl border border-secondary/15 bg-background p-8 shadow-soft">
+              <figure className="card-peach relative h-full p-8">
                 <span
                   aria-hidden="true"
-                  className="absolute right-6 top-2 font-serif text-7xl leading-none text-secondary/15"
+                  className="absolute right-6 top-2 font-serif text-7xl leading-none text-primary/15"
                 >
                   &rdquo;
                 </span>
@@ -52,13 +53,11 @@ export default function Testimonials() {
                   {t.quote}
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary font-serif text-background">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary font-serif text-cream">
                     {t.name.charAt(0)}
                   </span>
                   <span>
-                    <span className="block font-serif text-lg text-espresso">
-                      {t.name}
-                    </span>
+                    <span className="block font-serif text-lg text-primary">{t.name}</span>
                     <span className="block text-xs tracking-wide text-espresso/55">
                       {t.role}
                     </span>

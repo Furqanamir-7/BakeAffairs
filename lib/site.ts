@@ -6,14 +6,35 @@ export const site = {
   tagline: "Baked with love, crafted with care",
   instagram: "https://www.instagram.com/bakeaffairsbyayesha/",
   instagramHandle: "@bakeaffairsbyayesha",
-  // Placeholder WhatsApp number — replace with the real one (Pakistan format: 92XXXXXXXXXX)
   whatsapp: "https://wa.me/92XXXXXXXXXX",
   email: "hello@bakeaffairs.pk",
 };
 
 export const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Menu", href: "#menu" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Order", href: "#order" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Menu", href: "/menu" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Order", href: "/order" },
+];
+
+export const homeTeasers = [
+  {
+    title: "Our Story",
+    description: "Meet Ayesha and discover how a home kitchen became Lahore's boutique bakery.",
+    href: "/about",
+    emoji: "👩‍🍳",
+  },
+  {
+    title: "Our Menu",
+    description: "Custom cakes, fudgy brownies and chewy cookies — all made to order.",
+    href: "/menu",
+    emoji: "🎂",
+  },
+  {
+    title: "Gallery",
+    description: "A peek at recent bakes, celebration cakes and sweet little details.",
+    href: "/gallery",
+    emoji: "📸",
+  },
 ];

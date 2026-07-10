@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Jost, Cormorant_Garamond } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -23,8 +25,11 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bake-affairs-by-ayesha.vercel.app"),
-  title: "Bake Affairs by Ayesha | Home Bakery in Lahore",
+  metadataBase: new URL("https://bake-affairs.vercel.app"),
+  title: {
+    default: "Bake Affairs by Ayesha | Home Bakery in Lahore",
+    template: "%s | Bake Affairs by Ayesha",
+  },
   description:
     "Custom cakes, brownies & cookies — lovingly made to order in Lahore. A boutique home bakery by Ayesha.",
   keywords: [
@@ -39,6 +44,18 @@ export const metadata: Metadata = {
     description:
       "Custom cakes, brownies & cookies — lovingly made to order in Lahore.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Bake Affairs by Ayesha",
+      },
+    ],
+  },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/apple-icon.png",
   },
 };
 
@@ -52,8 +69,10 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${jost.variable} ${cormorant.variable} scroll-smooth`}
     >
-      <body className="bg-background text-espresso font-sans antialiased">
-        {children}
+      <body className="bg-background text-cream font-sans antialiased">
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

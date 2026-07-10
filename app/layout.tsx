@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Jost, Cormorant_Garamond } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageLoader from "@/components/PageLoader";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -69,7 +70,8 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${jost.variable} ${cormorant.variable} scroll-smooth`}
     >
-      <body className="bg-background text-cream font-sans antialiased">
+      <body className="bg-background text-ink font-sans antialiased">
+        <PageLoader />
         <Navbar />
         <main>{children}</main>
         <Footer />

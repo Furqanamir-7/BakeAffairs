@@ -42,20 +42,20 @@ export default function HowToOrder() {
         </Reveal>
 
         <div className="relative mt-16 grid gap-10 md:grid-cols-3">
-          <div className="pointer-events-none absolute left-[16.6%] right-[16.6%] top-9 hidden h-px bg-secondary/30 md:block" />
+          <div className="pointer-events-none absolute left-[16.6%] right-[16.6%] top-9 hidden h-px bg-maroon/20 md:block" />
 
           {steps.map((step, i) => (
             <Reveal key={step.n} delay={i * 0.12}>
               <div className="relative text-center">
                 <div className="mx-auto flex h-20 w-20 items-center justify-center">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full border border-secondary/40 bg-maroon-light p-5 text-cream shadow-soft ring-2 ring-primary/40">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full border border-maroon/20 bg-maroon p-5 text-cream shadow-soft">
                     <step.Icon className="h-8 w-8" />
                   </div>
                 </div>
-                <span className="mt-5 block font-serif text-sm tracking-[0.3em] text-secondary">
+                <span className="mt-5 block font-serif text-sm tracking-[0.3em] text-maroon">
                   {step.n}
                 </span>
-                <h3 className="mt-1 font-serif text-2xl text-cream">{step.title}</h3>
+                <h3 className="mt-1 font-serif text-2xl text-maroon">{step.title}</h3>
                 <p className="text-body mx-auto mt-3 max-w-xs text-sm">
                   {step.description}
                 </p>
@@ -65,11 +65,11 @@ export default function HowToOrder() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-12 text-center text-sm text-cream/60">
+          <p className="mt-12 text-center text-sm text-ink/55">
             Full details on lead time, payment and pickup are on our{" "}
             <Link
               href="/policies"
-              className="text-secondary underline-offset-4 hover:underline"
+              className="text-maroon underline-offset-4 hover:underline"
             >
               Policies
             </Link>{" "}

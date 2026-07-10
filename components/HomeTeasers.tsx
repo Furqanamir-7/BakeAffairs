@@ -26,14 +26,14 @@ export default function HomeTeasers() {
                 href={item.href}
                 className="card-peach group flex h-full flex-col p-8"
               >
-                <span className="text-4xl" aria-hidden="true">
-                  {item.emoji}
+                <span className="font-serif text-3xl text-maroon/35" aria-hidden="true">
+                  {item.title.charAt(0)}
                 </span>
-                <h3 className="mt-5 font-serif text-2xl text-primary">{item.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-espresso/75">
+                <h3 className="mt-5 font-serif text-2xl text-maroon">{item.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/65">
                   {item.description}
                 </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors group-hover:text-maroon-light">
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-maroon transition-colors group-hover:text-maroon-light">
                   Learn more
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>

@@ -38,7 +38,7 @@ export default function Navbar() {
   const linkClass = (href: string) => {
     const active = isActive(pathname, href);
     return `group relative text-sm font-medium tracking-wide transition-colors ${
-      active ? "text-secondary" : "text-cream/75 hover:text-cream"
+      active ? "text-maroon" : "text-ink/65 hover:text-maroon"
     }`;
   };
 
@@ -46,14 +46,14 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 overflow-visible border-b transition-all duration-300 ${
         scrolled || open
-          ? "border-primary/30 bg-espresso/95 shadow-soft backdrop-blur-md"
-          : "border-primary/20 bg-maroon-band"
+          ? "border-maroon/15 bg-background/95 shadow-soft backdrop-blur-md"
+          : "border-maroon/10 bg-background/80"
       }`}
     >
       <nav className="container-px flex h-20 items-center justify-between sm:h-24">
         <Link
           href="/"
-          className="rounded-2xl transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50"
+          className="rounded-2xl transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon/40"
           aria-label="Bake Affairs by Ayesha — home"
         >
           <Logo size="header" priority className="drop-shadow-logo" />
@@ -67,8 +67,8 @@ export default function Navbar() {
                 <span
                   className={`absolute -bottom-1.5 left-0 h-px transition-all duration-300 ${
                     isActive(pathname, link.href)
-                      ? "w-full bg-secondary"
-                      : "w-0 bg-secondary group-hover:w-full"
+                      ? "w-full bg-maroon"
+                      : "w-0 bg-maroon group-hover:w-full"
                   }`}
                 />
               </Link>
@@ -89,17 +89,17 @@ export default function Navbar() {
           className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
         >
           <span
-            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-maroon transition-all duration-300 ${
               open ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-maroon transition-all duration-300 ${
               open ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-maroon transition-all duration-300 ${
               open ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
@@ -113,15 +113,15 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-primary/25 bg-espresso md:hidden"
+            className="overflow-hidden border-t border-maroon/10 bg-background md:hidden"
           >
             <ul className="container-px flex flex-col gap-1 py-6">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`block rounded-xl px-3 py-3 font-serif text-xl transition-colors hover:bg-surface ${
-                      isActive(pathname, link.href) ? "text-secondary" : "text-cream"
+                    className={`block rounded-xl px-3 py-3 font-serif text-xl transition-colors hover:bg-surface-soft ${
+                      isActive(pathname, link.href) ? "text-maroon" : "text-ink"
                     }`}
                   >
                     {link.label}

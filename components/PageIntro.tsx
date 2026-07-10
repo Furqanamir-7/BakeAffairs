@@ -7,7 +7,7 @@ type Props = {
 export default function PageIntro({ eyebrow, title, description }: Props) {
   return (
     <section className="section-dark page-top relative overflow-hidden pb-10 sm:pb-14">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(109,18,19,0.5),transparent_65%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-maroon-glow" />
       <div className="container-px relative mx-auto max-w-2xl text-center">
         <p className="eyebrow">{eyebrow}</p>
         <h1 className="section-title mt-2">{title}</h1>

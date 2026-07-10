@@ -5,7 +5,7 @@ import { InstagramIcon } from "./icons";
 
 export default function Footer() {
   return (
-    <footer className="bg-maroon-band text-accent">
+    <footer className="bg-maroon-band text-cream">
       <div className="container-px py-14">
         <div className="grid gap-12 md:grid-cols-3 md:items-start">
           <div className="text-center md:text-left">
@@ -18,7 +18,7 @@ export default function Footer() {
                 className="mx-auto drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] md:mx-0"
               />
             </Link>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-accent/70 md:mx-0 mx-auto">
+            <p className="mt-5 mx-auto max-w-xs text-sm leading-relaxed text-cream/70 md:mx-0">
               {site.fullName} — a boutique home bakery making custom cakes,
               brownies &amp; cookies in {site.city}.
             </p>
@@ -30,7 +30,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-accent/80 transition-colors hover:text-secondary"
+                    className="text-sm text-cream/80 transition-colors hover:text-cream"
                   >
                     {link.label}
                   </Link>
@@ -44,18 +44,18 @@ export default function Footer() {
               href={site.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-secondary/40 px-4 py-2 text-sm text-accent transition-colors hover:border-secondary hover:text-secondary"
+              className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-4 py-2 text-sm text-cream transition-colors hover:border-cream hover:bg-cream/10"
             >
               <InstagramIcon className="h-4 w-4" />
               {site.instagramHandle}
             </a>
-            <p className="mt-3 font-script text-lg italic text-secondary/90">
+            <p className="mt-3 font-script text-lg italic text-maroon-blush">
               {site.tagline}
             </p>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-secondary/20 pt-6 text-center text-xs text-accent/55">
+        <div className="mt-12 border-t border-cream/15 pt-6 text-center text-xs text-cream/55">
           <p>
             &copy; {new Date().getFullYear()} {site.fullName}. Made with love in{" "}
             {site.city}.

@@ -11,13 +11,13 @@ export default function About({ compact = false }: Props) {
       <div className="container-px grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <div className="relative">
-            <div className="absolute -inset-3 rounded-[2rem] bg-primary/30 blur-lg" />
-            <div className="relative aspect-[5/6] overflow-hidden rounded-[1.75rem] border-2 border-primary/40 bg-surface-deep shadow-soft">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/40 via-surface to-espresso" />
+            <div className="absolute -inset-3 rounded-[2rem] bg-maroon-blush/70 blur-lg" />
+            <div className="relative aspect-[5/6] overflow-hidden rounded-[1.75rem] border border-maroon/15 bg-surface-soft shadow-soft">
+              <div className="absolute inset-0 bg-gradient-to-tr from-maroon-blush/80 via-surface to-parchment" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[6rem] leading-none">👩‍🍳</span>
+                <span className="font-serif text-7xl text-maroon/40">A</span>
               </div>
-              <div className="absolute bottom-5 left-5 rounded-xl bg-maroon-light px-4 py-3 text-cream shadow-soft">
+              <div className="absolute bottom-5 left-5 rounded-xl bg-maroon px-4 py-3 text-cream shadow-soft">
                 <p className="font-script text-lg italic">Hello, I&apos;m</p>
                 <p className="font-serif text-xl">{site.baker}</p>
               </div>

@@ -47,11 +47,13 @@ export default function Gallery({ compact = false }: Props) {
                   item.span === "tall" ? "min-h-[18rem] lg:min-h-[26rem]" : "min-h-[14rem]"
                 }`}
               >
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-primary/70">
-                  <span className="text-5xl opacity-90">{item.emoji}</span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface-soft text-maroon/50">
+                  <span className="font-serif text-4xl text-maroon/40">
+                    {item.caption.split(" ")[0]}
+                  </span>
                   <CameraIcon className="h-7 w-7 opacity-50" />
                 </div>
-                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-primary/90 to-transparent p-5 pt-12 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-maroon/90 to-transparent p-5 pt-12 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <span className="font-serif text-lg text-cream">{item.caption}</span>
                 </figcaption>
               </figure>

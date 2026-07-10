@@ -8,19 +8,19 @@ type Props = {
 
 export default function Contact({ compact = false }: Props) {
   return (
-    <section className="section-dark py-16 sm:py-24">
+    <section className="section-deep py-16 sm:py-24">
       <div className="container-px">
         <Reveal>
-          <div className="card-peach relative overflow-hidden px-6 py-14 text-center sm:px-12 sm:py-20">
-            <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-primary/15 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-maroon/15 bg-surface px-6 py-14 text-center shadow-soft sm:px-12 sm:py-20">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-maroon-blush/60 blur-3xl" />
 
             <div className="relative mx-auto max-w-xl">
               {!compact && (
                 <>
                   <p className="eyebrow">Let&apos;s bake something</p>
-                  <h2 className="section-title mt-2 !text-primary">Ready to Order?</h2>
-                  <div className="peach-divider !via-primary" aria-hidden="true" />
-                  <p className="mt-4 text-base leading-relaxed text-espresso/75 sm:text-lg">
+                  <h2 className="section-title mt-2">Ready to Order?</h2>
+                  <div className="peach-divider" aria-hidden="true" />
+                  <p className="text-body mt-4 text-base sm:text-lg">
                     DM us on Instagram or send a WhatsApp message — tell us what
                     you&apos;re celebrating and we&apos;ll take it from there.
                   </p>
@@ -52,13 +52,13 @@ export default function Contact({ compact = false }: Props) {
                 </a>
               </div>
 
-              <p className="mt-7 text-sm text-espresso/60">
+              <p className="mt-7 text-sm text-ink/55">
                 Find us on Instagram{" "}
                 <a
                   href={site.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-primary underline-offset-4 hover:underline"
+                  className="font-medium text-maroon underline-offset-4 hover:underline"
                 >
                   {site.instagramHandle}
                 </a>

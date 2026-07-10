@@ -33,7 +33,7 @@ export default function Menu({ compact = false }: Props) {
 
         <Reveal delay={compact ? 0 : 0.08}>
           <p
-            className={`mx-auto max-w-2xl text-center text-sm italic text-cream/65 ${
+            className={`mx-auto max-w-2xl text-center text-sm italic text-ink/55 ${
               compact ? "" : "mt-10"
             }`}
           >
@@ -45,26 +45,26 @@ export default function Menu({ compact = false }: Props) {
           {menuSections.map((section, i) => (
             <Reveal key={section.id} delay={Math.min(i * 0.04, 0.2)}>
               <div>
-                <div className="flex flex-col gap-2 border-b border-secondary/25 pb-3 sm:flex-row sm:items-end sm:justify-between">
-                  <h3 className="font-serif text-2xl text-cream sm:text-[1.65rem]">
+                <div className="flex flex-col gap-2 border-b border-maroon/15 pb-3 sm:flex-row sm:items-end sm:justify-between">
+                  <h3 className="font-serif text-2xl text-maroon sm:text-[1.65rem]">
                     {section.title}
                   </h3>
                   {section.note && (
-                    <p className="max-w-md text-xs text-cream/55 sm:text-right">
+                    <p className="max-w-md text-xs text-ink/45 sm:text-right">
                       {section.note}
                     </p>
                   )}
                 </div>
-                <ul className="mt-1 divide-y divide-secondary/15">
+                <ul className="mt-1 divide-y divide-maroon/10">
                   {section.items.map((item) => (
                     <li
                       key={`${section.id}-${item.name}`}
                       className="flex items-baseline justify-between gap-6 py-3.5"
                     >
-                      <span className="text-sm text-cream/85 sm:text-base">
+                      <span className="text-sm text-ink/80 sm:text-base">
                         {item.name}
                       </span>
-                      <span className="shrink-0 font-medium tabular-nums text-secondary">
+                      <span className="shrink-0 font-medium tabular-nums text-maroon">
                         {item.price}
                       </span>
                     </li>
@@ -76,26 +76,26 @@ export default function Menu({ compact = false }: Props) {
 
           <Reveal>
             <div>
-              <div className="border-b border-secondary/25 pb-3">
-                <h3 className="font-serif text-2xl text-cream sm:text-[1.65rem]">
+              <div className="border-b border-maroon/15 pb-3">
+                <h3 className="font-serif text-2xl text-maroon sm:text-[1.65rem]">
                   Deals
                 </h3>
               </div>
-              <ul className="mt-1 divide-y divide-secondary/15">
+              <ul className="mt-1 divide-y divide-maroon/10">
                 {menuDeals.map((deal) => (
                   <li
                     key={deal.name}
                     className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                   >
                     <div>
-                      <p className="text-sm font-medium text-cream sm:text-base">
+                      <p className="text-sm font-medium text-ink sm:text-base">
                         {deal.name}
                       </p>
-                      <p className="mt-0.5 text-sm text-cream/60">
+                      <p className="mt-0.5 text-sm text-ink/55">
                         {deal.includes}
                       </p>
                     </div>
-                    <span className="shrink-0 font-medium tabular-nums text-secondary">
+                    <span className="shrink-0 font-medium tabular-nums text-maroon">
                       {deal.price}
                     </span>
                   </li>
@@ -106,8 +106,8 @@ export default function Menu({ compact = false }: Props) {
         </div>
 
         <Reveal>
-          <div className="mt-14 border-t border-secondary/20 pt-8">
-            <ul className="space-y-2 text-sm text-cream/65">
+          <div className="mt-14 border-t border-maroon/15 pt-8">
+            <ul className="space-y-2 text-sm text-ink/60">
               {menuNotes.map((note) => (
                 <li key={note}>{note}</li>
               ))}
@@ -119,7 +119,7 @@ export default function Menu({ compact = false }: Props) {
               </Link>
               <Link
                 href="/policies"
-                className="text-sm text-cream/70 underline-offset-4 transition-colors hover:text-secondary hover:underline"
+                className="text-sm text-ink/65 underline-offset-4 transition-colors hover:text-maroon hover:underline"
               >
                 Ordering &amp; pickup policies
               </Link>

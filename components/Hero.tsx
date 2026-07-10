@@ -90,9 +90,8 @@ export default function Hero() {
               />
             </div>
 
-            {/* Cake sits in the lower part of the maroon frame */}
             <div className="relative min-h-0 flex-1">
-              <div className="absolute inset-x-[-4%] bottom-[-2%] top-[6%] sm:top-[4%] lg:top-[2%]">
+              <div className="absolute inset-x-0 bottom-0 top-0">
                 <CakeShowcase />
               </div>
             </div>

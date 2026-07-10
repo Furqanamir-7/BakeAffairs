@@ -39,9 +39,8 @@ export default function CakeShowcase() {
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-    // Aim high so the cake reads lower in the frame on desktop + mobile
-    camera.position.set(0, 1.15, 5.1);
-    camera.lookAt(0, 0.55, 0);
+    camera.position.set(0, 0.75, 5.1);
+    camera.lookAt(0, 0.05, 0);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -61,7 +60,7 @@ export default function CakeShowcase() {
     scene.add(fill);
 
     const cake = new THREE.Group();
-    const cakeBaseY = -0.95;
+    const cakeBaseY = -0.28;
     cake.position.y = cakeBaseY;
     scene.add(cake);
 

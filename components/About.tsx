@@ -65,10 +65,10 @@ export default function About({ compact = false }: Props) {
               ].map((stat) => (
                 <div
                   key={stat.v}
-                  className="card-peach px-4 py-5 text-center"
+                  className="card-maroon px-4 py-5 text-center"
                 >
-                  <dt className="font-serif text-2xl text-primary">{stat.k}</dt>
-                  <dd className="mt-1 text-xs font-medium tracking-wide text-espresso/60">
+                  <dt className="font-serif text-2xl text-cream">{stat.k}</dt>
+                  <dd className="mt-1 text-xs font-medium tracking-wide text-cream/60">
                     {stat.v}
                   </dd>
                 </div>

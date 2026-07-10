@@ -24,41 +24,45 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="section-deep py-20 sm:py-28">
+    <section className="section-deep py-16 sm:py-28">
       <div className="container-px">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Kind words</p>
-            <h2 className="section-title mt-2">Loved by Our Customers</h2>
+            <h2 className="section-title mt-2 text-[1.75rem] sm:text-4xl md:text-5xl">
+              Loved by Our Customers
+            </h2>
             <div className="peach-divider" aria-hidden="true" />
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-7 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 sm:gap-7 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.1}>
-              <figure className="card-peach relative h-full p-8">
+              <figure className="card-maroon relative h-full p-6 sm:p-8">
                 <span
                   aria-hidden="true"
-                  className="absolute right-6 top-2 font-serif text-7xl leading-none text-primary/15"
+                  className="absolute right-6 top-2 font-serif text-7xl leading-none text-cream/10"
                 >
                   &rdquo;
                 </span>
-                <div className="flex gap-1 text-primary">
+                <div className="flex gap-1 text-maroon-blush">
                   {Array.from({ length: 5 }).map((_, s) => (
                     <StarIcon key={s} className="h-4 w-4" />
                   ))}
                 </div>
-                <blockquote className="relative mt-5 text-base leading-relaxed text-espresso/80">
+                <blockquote className="relative mt-5 text-sm leading-relaxed text-cream/80 sm:text-base">
                   {t.quote}
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary font-serif text-cream">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-cream/15 font-serif text-cream">
                     {t.name.charAt(0)}
                   </span>
                   <span>
-                    <span className="block font-serif text-lg text-primary">{t.name}</span>
-                    <span className="block text-xs tracking-wide text-espresso/55">
+                    <span className="block font-serif text-lg text-cream">
+                      {t.name}
+                    </span>
+                    <span className="block text-xs tracking-wide text-cream/55">
                       {t.role}
                     </span>
                   </span>

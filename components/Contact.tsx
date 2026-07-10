@@ -8,19 +8,23 @@ type Props = {
 
 export default function Contact({ compact = false }: Props) {
   return (
-    <section className="section-deep py-16 sm:py-24">
+    <section className="section-surface py-16 sm:py-24">
       <div className="container-px">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-maroon/15 bg-surface px-6 py-14 text-center shadow-soft sm:px-12 sm:py-20">
-            <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-maroon-blush/60 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-cream/15 bg-maroon-band px-5 py-12 text-center shadow-soft sm:rounded-[2rem] sm:px-12 sm:py-20">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-maroon-light/40 blur-3xl" />
 
             <div className="relative mx-auto max-w-xl">
               {!compact && (
                 <>
-                  <p className="eyebrow">Let&apos;s bake something</p>
-                  <h2 className="section-title mt-2">Ready to Order?</h2>
-                  <div className="peach-divider" aria-hidden="true" />
-                  <p className="text-body mt-4 text-base sm:text-lg">
+                  <p className="font-script text-xl italic text-maroon-blush sm:text-2xl">
+                    Let&apos;s bake something
+                  </p>
+                  <h2 className="mt-2 font-serif text-[1.75rem] leading-tight text-cream sm:text-4xl md:text-5xl">
+                    Ready to Order?
+                  </h2>
+                  <div className="peach-divider-light" aria-hidden="true" />
+                  <p className="mt-4 text-sm leading-relaxed text-cream/75 sm:text-lg">
                     DM us on Instagram or send a WhatsApp message — tell us what
                     you&apos;re celebrating and we&apos;ll take it from there.
                   </p>
@@ -28,15 +32,15 @@ export default function Contact({ compact = false }: Props) {
               )}
 
               <div
-                className={`flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 ${
-                  compact ? "" : "mt-9"
+                className={`flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4 ${
+                  compact ? "" : "mt-8 sm:mt-9"
                 }`}
               >
                 <a
                   href={site.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-peach w-full sm:w-auto"
+                  className="btn w-full border border-cream bg-cream text-maroon shadow-soft hover:bg-maroon-blush hover:shadow-lift hover:-translate-y-0.5 sm:w-auto"
                 >
                   <InstagramIcon className="h-5 w-5" />
                   Message on Instagram
@@ -45,20 +49,20 @@ export default function Contact({ compact = false }: Props) {
                   href={site.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline w-full sm:w-auto"
+                  className="btn w-full border border-cream/40 text-cream hover:border-cream hover:bg-cream/10 hover:-translate-y-0.5 sm:w-auto"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
                   Chat on WhatsApp
                 </a>
               </div>
 
-              <p className="mt-7 text-sm text-ink/55">
+              <p className="mt-7 text-sm text-cream/60">
                 Find us on Instagram{" "}
                 <a
                   href={site.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-maroon underline-offset-4 hover:underline"
+                  className="font-medium text-maroon-blush underline-offset-4 hover:underline"
                 >
                   {site.instagramHandle}
                 </a>

@@ -43,17 +43,17 @@ export default function Gallery({ compact = false }: Props) {
               className={item.span === "tall" ? "lg:row-span-2" : ""}
             >
               <figure
-                className={`card-peach group relative h-full w-full overflow-hidden ${
-                  item.span === "tall" ? "min-h-[18rem] lg:min-h-[26rem]" : "min-h-[14rem]"
+                className={`card-maroon group relative h-full w-full overflow-hidden ${
+                  item.span === "tall" ? "min-h-[16rem] sm:min-h-[18rem] lg:min-h-[26rem]" : "min-h-[12rem] sm:min-h-[14rem]"
                 }`}
               >
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface-soft text-maroon/50">
-                  <span className="font-serif text-4xl text-maroon/40">
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-cream/50">
+                  <span className="font-serif text-3xl text-cream/35 sm:text-4xl">
                     {item.caption.split(" ")[0]}
                   </span>
                   <CameraIcon className="h-7 w-7 opacity-50" />
                 </div>
-                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-maroon/90 to-transparent p-5 pt-12 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-espresso/90 to-transparent p-5 pt-12 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <span className="font-serif text-lg text-cream">{item.caption}</span>
                 </figcaption>
               </figure>

@@ -39,8 +39,8 @@ export default function CakeShowcase() {
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
-    camera.position.set(0, 0.9, 5.2);
-    camera.lookAt(0, 0.15, 0);
+    camera.position.set(0, 0.55, 5.0);
+    camera.lookAt(0, -0.35, 0);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -60,6 +60,7 @@ export default function CakeShowcase() {
     scene.add(fill);
 
     const cake = new THREE.Group();
+    cake.position.y = -0.42;
     scene.add(cake);
 
     const soft = (color: number) =>
@@ -250,12 +251,14 @@ export default function CakeShowcase() {
       cake.rotation.x = curRotX;
 
       if (!prefersReduced) {
-        cake.position.y = Math.sin(t * 1.6) * 0.04;
+        cake.position.y = -0.42 + Math.sin(t * 1.6) * 0.035;
         cake.rotation.z = Math.sin(t * 1.2) * 0.03;
         const fs = 1 + Math.sin(t * 10) * 0.18;
         flame.scale.set(fs, fs * 1.2, fs);
         (flame.material as THREE.MeshStandardMaterial).emissiveIntensity =
           0.7 + Math.sin(t * 12) * 0.3;
+      } else {
+        cake.position.y = -0.42;
       }
 
       renderer.render(scene, camera);

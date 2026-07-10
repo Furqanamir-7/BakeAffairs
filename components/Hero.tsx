@@ -82,15 +82,15 @@ export default function Hero() {
           <div className="relative flex aspect-[4/5] max-h-[min(52svh,420px)] flex-col overflow-hidden rounded-[1.35rem] border border-maroon/40 bg-maroon-band shadow-soft sm:max-h-[min(58svh,480px)] sm:rounded-[1.5rem] lg:max-h-[min(70svh,520px)]">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(146,42,40,0.55),transparent_70%)]" />
 
-            <div className="relative shrink-0 px-3 pt-4 sm:px-4 sm:pt-5">
+            <div className="relative z-10 shrink-0 px-3 pt-3 sm:px-4 sm:pt-4">
               <Logo
                 size="md"
                 priority
-                className="mx-auto h-12 w-auto drop-shadow-logo sm:h-14 lg:h-16"
+                className="mx-auto h-10 w-auto drop-shadow-logo sm:h-12 lg:h-14"
               />
             </div>
 
-            <div className="relative min-h-0 flex-1">
+            <div className="relative min-h-0 flex-1 pb-1">
               <CakeShowcase />
             </div>
           </div>

@@ -5,7 +5,7 @@ import Menu from "@/components/Menu";
 export const metadata: Metadata = {
   title: "Menu",
   description:
-    "Custom cakes, fudgy brownies and chewy cookies — all made to order at Bake Affairs by Ayesha.",
+    "Cakes, bento cakes, cupcakes, brownies, banana bread and deals from Bake Affairs by Ayesha in Lahore.",
 };
 
 export default function MenuPage() {
@@ -13,8 +13,8 @@ export default function MenuPage() {
     <>
       <PageIntro
         eyebrow="What we bake"
-        title="Our Specialties"
-        description="A small, lovingly curated menu — each made to order so it arrives fresh, beautiful and full of flavour."
+        title="Our Menu"
+        description="Cakes by the pound, bento cakes, cupcakes, brownies and sweet deals — made to order in Lahore."
       />
       <Menu compact />
     </>

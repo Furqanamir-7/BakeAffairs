@@ -1,0 +1,14 @@
+---
+description: Always commit, push to GitHub, and deploy together
+alwaysApply: true
+---
+
+# Deploy workflow
+
+When the user asks to deploy (or ship/publish changes to production):
+
+1. Commit all relevant project changes with a clear message (unless there is nothing to commit).
+2. Push to `origin` on the current branch (`master` / tracking branch).
+3. Deploy to Vercel production (`npx vercel deploy --prod --yes`).
+
+Do not leave working-tree changes only on Vercel — GitHub should stay in sync after every deploy.

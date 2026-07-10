@@ -16,6 +16,7 @@ export const navLinks = [
   { label: "Menu", href: "/menu" },
   { label: "Gallery", href: "/gallery" },
   { label: "Order", href: "/order" },
+  { label: "Policies", href: "/policies" },
 ];
 
 export const homeTeasers = [
@@ -27,7 +28,7 @@ export const homeTeasers = [
   },
   {
     title: "Our Menu",
-    description: "Custom cakes, fudgy brownies and chewy cookies — all made to order.",
+    description: "Whipped cream & buttercream cakes, brownies, cupcakes and deals — with prices.",
     href: "/menu",
     emoji: "🎂",
   },

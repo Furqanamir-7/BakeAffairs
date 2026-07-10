@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
 import { BrowseIcon, ChatIcon, GiftIcon } from "./icons";
 
@@ -7,21 +8,21 @@ const steps = [
     title: "Browse the menu",
     Icon: BrowseIcon,
     description:
-      "Explore our specialties and gather a little inspiration for your order.",
+      "Pick your cake, brownies or deal. Order at least 3–4 days ahead.",
   },
   {
     n: "02",
-    title: "DM on Instagram",
+    title: "Confirm & prepay",
     Icon: ChatIcon,
     description:
-      "Send us a message with your idea, date and serving size. We'll confirm the details.",
+      "DM us on Instagram with your date and details. Full prepayment confirms the order.",
   },
   {
     n: "03",
-    title: "Receive your order",
+    title: "Pick up your order",
     Icon: GiftIcon,
     description:
-      "Pick up your freshly baked treats — beautifully packed and ready to enjoy.",
+      "We don’t deliver — collect in person or arrange InDrive/Yango (car recommended).",
   },
 ];
 
@@ -62,6 +63,19 @@ export default function HowToOrder() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={0.2}>
+          <p className="mt-12 text-center text-sm text-cream/60">
+            Full details on lead time, payment and pickup are on our{" "}
+            <Link
+              href="/policies"
+              className="text-secondary underline-offset-4 hover:underline"
+            >
+              Policies
+            </Link>{" "}
+            page.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

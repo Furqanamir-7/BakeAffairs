@@ -1,30 +1,12 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
-import { ArrowRight, BrownieIcon, CakeIcon, CookieIcon } from "./icons";
-
-const specialties = [
-  {
-    name: "Custom Cakes",
-    emoji: "🎂",
-    Icon: CakeIcon,
-    description:
-      "Birthdays, weddings & every little celebration in between — designed around your theme, flavours and vision.",
-  },
-  {
-    name: "Brownies",
-    emoji: "🍫",
-    Icon: BrownieIcon,
-    description:
-      "Fudgy, rich and impossibly gooey. Classic chocolate, walnut, and seasonal specials baked fresh in small batches.",
-  },
-  {
-    name: "Cookies",
-    emoji: "🍪",
-    Icon: CookieIcon,
-    description:
-      "Thick, chewy and loaded with chocolate. Perfect for gifting, dessert tables or a sweet everyday treat.",
-  },
-];
+import { ArrowRight } from "./icons";
+import {
+  menuDeals,
+  menuDisclaimer,
+  menuNotes,
+  menuSections,
+} from "@/lib/menu";
 
 type Props = {
   compact?: boolean;
@@ -32,43 +14,118 @@ type Props = {
 
 export default function Menu({ compact = false }: Props) {
   return (
-    <section className={`${compact ? "section-surface" : "section-deep"} py-16 sm:py-24`}>
+    <section
+      className={`${compact ? "section-surface" : "section-deep"} py-16 sm:py-24`}
+    >
       <div className="container-px">
         {!compact && (
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
               <p className="eyebrow">What we bake</p>
-              <h2 className="section-title mt-2">Our Specialties</h2>
+              <h2 className="section-title mt-2">Our Menu</h2>
+              <div className="peach-divider" aria-hidden="true" />
               <p className="text-body mt-4 text-base sm:text-lg">
-                A small, lovingly curated menu — each made to order so it arrives
-                fresh, beautiful and full of flavour.
+                Cakes, brownies, cupcakes and deals — made to order in Lahore.
               </p>
             </div>
           </Reveal>
         )}
 
-        <div className={`grid gap-7 md:grid-cols-3 ${compact ? "" : "mt-14"}`}>
-          {specialties.map((item, i) => (
-            <Reveal key={item.name} delay={i * 0.1}>
-              <article className="card-peach group h-full p-8">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-cream">
-                  <item.Icon className="h-8 w-8" />
+        <Reveal delay={compact ? 0 : 0.08}>
+          <p
+            className={`mx-auto max-w-2xl text-center text-sm italic text-cream/65 ${
+              compact ? "" : "mt-10"
+            }`}
+          >
+            {menuDisclaimer}
+          </p>
+        </Reveal>
+
+        <div className="mt-12 space-y-14">
+          {menuSections.map((section, i) => (
+            <Reveal key={section.id} delay={Math.min(i * 0.04, 0.2)}>
+              <div>
+                <div className="flex flex-col gap-2 border-b border-secondary/25 pb-3 sm:flex-row sm:items-end sm:justify-between">
+                  <h3 className="font-serif text-2xl text-cream sm:text-[1.65rem]">
+                    {section.title}
+                  </h3>
+                  {section.note && (
+                    <p className="max-w-md text-xs text-cream/55 sm:text-right">
+                      {section.note}
+                    </p>
+                  )}
                 </div>
-                <h3 className="mt-6 font-serif text-2xl text-primary">
-                  {item.name} <span aria-hidden="true">{item.emoji}</span>
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-espresso/75">{item.description}</p>
-                <Link
-                  href="/order"
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-maroon-light"
-                >
-                  Order This
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </article>
+                <ul className="mt-1 divide-y divide-secondary/15">
+                  {section.items.map((item) => (
+                    <li
+                      key={`${section.id}-${item.name}`}
+                      className="flex items-baseline justify-between gap-6 py-3.5"
+                    >
+                      <span className="text-sm text-cream/85 sm:text-base">
+                        {item.name}
+                      </span>
+                      <span className="shrink-0 font-medium tabular-nums text-secondary">
+                        {item.price}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Reveal>
           ))}
+
+          <Reveal>
+            <div>
+              <div className="border-b border-secondary/25 pb-3">
+                <h3 className="font-serif text-2xl text-cream sm:text-[1.65rem]">
+                  Deals
+                </h3>
+              </div>
+              <ul className="mt-1 divide-y divide-secondary/15">
+                {menuDeals.map((deal) => (
+                  <li
+                    key={deal.name}
+                    className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                  >
+                    <div>
+                      <p className="text-sm font-medium text-cream sm:text-base">
+                        {deal.name}
+                      </p>
+                      <p className="mt-0.5 text-sm text-cream/60">
+                        {deal.includes}
+                      </p>
+                    </div>
+                    <span className="shrink-0 font-medium tabular-nums text-secondary">
+                      {deal.price}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
+
+        <Reveal>
+          <div className="mt-14 border-t border-secondary/20 pt-8">
+            <ul className="space-y-2 text-sm text-cream/65">
+              {menuNotes.map((note) => (
+                <li key={note}>{note}</li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link href="/order" className="btn-peach">
+                Order Now
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/policies"
+                className="text-sm text-cream/70 underline-offset-4 transition-colors hover:text-secondary hover:underline"
+              >
+                Ordering &amp; pickup policies
+              </Link>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

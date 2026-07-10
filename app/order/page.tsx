@@ -6,7 +6,7 @@ import Contact from "@/components/Contact";
 export const metadata: Metadata = {
   title: "Order",
   description:
-    "Order custom cakes, brownies and cookies from Bake Affairs by Ayesha in Lahore via Instagram or WhatsApp.",
+    "Order cakes, brownies and deals from Bake Affairs by Ayesha in Lahore. Order 3–4 days ahead with full prepayment; pickup only.",
 };
 
 export default function OrderPage() {
@@ -15,7 +15,7 @@ export default function OrderPage() {
       <PageIntro
         eyebrow="Let's bake something"
         title="Ready to Order?"
-        description="DM us on Instagram or send a WhatsApp message — tell us what you're celebrating and we'll take it from there."
+        description="DM us on Instagram — share your date, flavour and size. Full prepayment confirms your order; pickup only."
       />
       <HowToOrder />
       <Contact compact />

@@ -19,8 +19,8 @@ export default function Hero() {
       <div className="pointer-events-none absolute -left-24 top-16 h-64 w-64 rounded-full bg-maroon-blush/40 blur-3xl lg:h-80 lg:w-80" />
       <div className="pointer-events-none absolute -right-24 bottom-8 h-64 w-64 rounded-full bg-maroon/5 blur-3xl lg:h-80 lg:w-80" />
 
-      <div className="container-px relative grid w-full grid-cols-1 items-center gap-6 py-24 sm:gap-8 sm:py-28 lg:grid-cols-2 lg:gap-12 lg:py-8 xl:gap-16">
-        <div className="w-full max-w-xl text-center lg:max-w-none lg:text-left">
+      <div className="container-px relative grid w-full grid-cols-1 items-center gap-6 py-24 sm:gap-8 sm:py-28 lg:grid-cols-2 lg:items-end lg:gap-12 lg:pb-10 lg:pt-28 xl:gap-16">
+        <div className="w-full max-w-xl text-center lg:mb-8 lg:max-w-none lg:self-center lg:text-left">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,9 +77,9 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.96, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto w-full max-w-[240px] sm:max-w-[300px] lg:max-w-[360px] xl:max-w-[380px]"
+          className="mx-auto w-full max-w-[240px] translate-y-2 sm:max-w-[300px] sm:translate-y-3 lg:mx-0 lg:max-w-[360px] lg:translate-y-6 xl:max-w-[380px] xl:translate-y-8"
         >
-          <div className="relative flex aspect-[4/5] max-h-[min(52svh,420px)] flex-col overflow-hidden rounded-[1.35rem] border border-maroon/40 bg-maroon-band shadow-soft sm:max-h-[min(58svh,480px)] sm:rounded-[1.5rem] lg:max-h-[min(70svh,520px)]">
+          <div className="relative flex aspect-[4/5] max-h-[min(52svh,420px)] flex-col overflow-hidden rounded-[1.35rem] border border-maroon/40 bg-maroon-band shadow-soft sm:max-h-[min(58svh,480px)] sm:rounded-[1.5rem] lg:max-h-[min(68svh,500px)]">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(146,42,40,0.55),transparent_70%)]" />
 
             <div className="relative z-10 shrink-0 px-3 pt-3 sm:px-4 sm:pt-4">
@@ -90,8 +90,11 @@ export default function Hero() {
               />
             </div>
 
-            <div className="relative min-h-0 flex-1 pb-1">
-              <CakeShowcase />
+            {/* Cake sits in the lower part of the maroon frame */}
+            <div className="relative min-h-0 flex-1">
+              <div className="absolute inset-x-[-4%] bottom-[-2%] top-[6%] sm:top-[4%] lg:top-[2%]">
+                <CakeShowcase />
+              </div>
             </div>
           </div>
         </motion.div>

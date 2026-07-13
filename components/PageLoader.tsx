@@ -153,7 +153,7 @@ export default function PageLoader() {
               brand={false}
               size="hero"
               priority
-              className="h-44 w-auto drop-shadow-logo sm:h-52 md:h-60"
+              className="h-80 w-auto drop-shadow-logo sm:h-[22rem] md:h-[26rem]"
             />
             <p className="mt-3 font-serif text-sm uppercase tracking-[0.28em] text-maroon sm:text-base">
               Bake Affairs

@@ -15,8 +15,8 @@ export default function Footer() {
               aria-label="Bake Affairs by Ayesha — home"
             >
               <Logo
-                size="sm"
-                className="mx-auto h-12 w-auto drop-shadow-[0_4px_14px_rgba(0,0,0,0.3)] md:mx-0 sm:h-14"
+                size="footer"
+                className="mx-auto drop-shadow-[0_4px_14px_rgba(0,0,0,0.3)] md:mx-0"
               />
             </Link>
             <p className="text-xs leading-relaxed text-cream/65 sm:text-sm">

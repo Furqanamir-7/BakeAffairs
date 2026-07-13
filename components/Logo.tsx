@@ -11,9 +11,11 @@ type Props = {
 const sizeClasses = {
   sm: "h-11 w-auto",
   md: "h-14 w-auto",
-  header: "h-[5.5rem] w-auto sm:h-24 md:h-[6.25rem] -my-3 sm:-my-4",
+  // Fills the fixed header bar visually without changing nav height
+  header:
+    "h-[4.75rem] w-auto sm:h-[5.75rem] md:h-[6.5rem] -my-3 sm:-my-4 md:-my-5 scale-110 sm:scale-125 origin-left",
   lg: "h-[72px] w-auto",
-  footer: "h-36 w-auto sm:h-40 md:h-44",
+  footer: "h-16 w-auto sm:h-[4.75rem]",
   hero: "h-32 w-auto sm:h-40 md:h-44",
 };
 

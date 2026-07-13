@@ -2,13 +2,9 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-import Logo from "@/components/Logo";
 import HeroSparkles from "@/components/HeroSparkles";
 import { site } from "@/lib/site";
 import { ArrowRight } from "./icons";
-
-const CakeShowcase = dynamic(() => import("./CakeShowcase"), { ssr: false });
 
 export default function Hero() {
   return (
@@ -81,23 +77,19 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto w-full max-w-[240px] translate-y-2 sm:max-w-[300px] sm:translate-y-3 lg:mx-0 lg:max-w-[360px] lg:translate-y-6 xl:max-w-[380px] xl:translate-y-8"
         >
-          <div className="relative flex aspect-[4/5] max-h-[min(52svh,420px)] flex-col overflow-hidden rounded-[1.35rem] border border-maroon/40 bg-maroon-band shadow-soft sm:max-h-[min(58svh,480px)] sm:rounded-[1.5rem] lg:max-h-[min(68svh,500px)]">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(146,42,40,0.55),transparent_70%)]" />
-
-            <div className="relative z-10 shrink-0 px-3 pt-3 sm:px-4 sm:pt-4">
-              <Logo
-                brand={false}
-                size="md"
-                priority
-                className="mx-auto h-10 w-auto drop-shadow-logo sm:h-12 lg:h-14"
-              />
-            </div>
-
-            <div className="relative min-h-0 flex-1">
-              <div className="absolute inset-x-0 bottom-0 top-0">
-                <CakeShowcase />
-              </div>
-            </div>
+          <div className="relative aspect-[4/5] max-h-[min(52svh,420px)] overflow-hidden rounded-[1.35rem] border border-maroon/40 bg-maroon-band shadow-soft sm:max-h-[min(58svh,480px)] sm:rounded-[1.5rem] lg:max-h-[min(68svh,500px)]">
+            <video
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Bake Affairs cake showcase"
+            >
+              <source src="/videos/hero.mp4" type="video/mp4" />
+            </video>
+            <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-cream/10" />
           </div>
         </motion.div>
       </div>

@@ -5,7 +5,7 @@ import About from "@/components/About";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Meet Ayesha and learn the story behind Bake Affairs — a boutique home bakery in Lahore.",
+    "Hi, I'm Ayesha. Welcome to BakeAffairs — a home bakery in Lahore started in 2022.",
 };
 
 export default function AboutPage() {
@@ -13,8 +13,8 @@ export default function AboutPage() {
     <>
       <PageIntro
         eyebrow="Our little story"
-        title="A passion project, baked one order at a time"
-        description="Bake Affairs began in a home kitchen in Lahore — built on care, patience and real ingredients."
+        title="BakeAffairs by Ayesha"
+        description="It all started in 2022 — a home kitchen, a few orders at a time, and a lot of love."
       />
       <About compact />
     </>

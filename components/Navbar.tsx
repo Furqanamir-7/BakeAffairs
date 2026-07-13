@@ -38,7 +38,7 @@ export default function Navbar() {
   const linkClass = (href: string) => {
     const active = isActive(pathname, href);
     return `group relative text-sm font-medium tracking-wide transition-colors ${
-      active ? "text-maroon" : "text-ink/65 hover:text-maroon"
+      active ? "text-maroon-blush" : "text-cream/80 hover:text-cream"
     }`;
   };
 
@@ -46,14 +46,14 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 overflow-visible border-b transition-all duration-300 ${
         scrolled || open
-          ? "border-maroon/15 bg-background/95 shadow-soft backdrop-blur-md"
-          : "border-maroon/10 bg-background/80"
+          ? "border-cream/15 bg-maroon-band shadow-soft"
+          : "border-cream/10 bg-maroon-band"
       }`}
     >
       <nav className="container-px flex h-20 items-center justify-between sm:h-24">
         <Link
           href="/"
-          className="rounded-2xl transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon/40"
+          className="rounded-2xl transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40"
           aria-label="Bake Affairs by Ayesha — home"
         >
           <Logo size="header" priority className="drop-shadow-logo" />
@@ -67,15 +67,18 @@ export default function Navbar() {
                 <span
                   className={`absolute -bottom-1.5 left-0 h-px transition-all duration-300 ${
                     isActive(pathname, link.href)
-                      ? "w-full bg-maroon"
-                      : "w-0 bg-maroon group-hover:w-full"
+                      ? "w-full bg-maroon-blush"
+                      : "w-0 bg-maroon-blush group-hover:w-full"
                   }`}
                 />
               </Link>
             </li>
           ))}
           <li>
-            <Link href="/order" className="btn-peach !px-6 !py-2.5">
+            <Link
+              href="/order"
+              className="btn !px-6 !py-2.5 border border-cream bg-cream text-maroon shadow-soft hover:bg-maroon-blush hover:shadow-lift hover:-translate-y-0.5"
+            >
               Order Now
             </Link>
           </li>
@@ -89,17 +92,17 @@ export default function Navbar() {
           className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
         >
           <span
-            className={`h-0.5 w-6 rounded-full bg-maroon transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
               open ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 rounded-full bg-maroon transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
               open ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 rounded-full bg-maroon transition-all duration-300 ${
+            className={`h-0.5 w-6 rounded-full bg-cream transition-all duration-300 ${
               open ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
@@ -113,15 +116,17 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-maroon/10 bg-background md:hidden"
+            className="overflow-hidden border-t border-cream/15 bg-maroon-dark md:hidden"
           >
             <ul className="container-px flex flex-col gap-1 py-6">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`block rounded-xl px-3 py-3 font-serif text-xl transition-colors hover:bg-surface-soft ${
-                      isActive(pathname, link.href) ? "text-maroon" : "text-ink"
+                    className={`block rounded-xl px-3 py-3 font-serif text-xl transition-colors hover:bg-maroon-light/40 ${
+                      isActive(pathname, link.href)
+                        ? "text-maroon-blush"
+                        : "text-cream"
                     }`}
                   >
                     {link.label}
@@ -129,7 +134,10 @@ export default function Navbar() {
                 </li>
               ))}
               <li className="pt-2">
-                <Link href="/order" className="btn-peach w-full">
+                <Link
+                  href="/order"
+                  className="btn w-full border border-cream bg-cream text-maroon"
+                >
                   Order Now
                 </Link>
               </li>

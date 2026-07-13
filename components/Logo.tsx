@@ -4,6 +4,8 @@ type Props = {
   className?: string;
   priority?: boolean;
   size?: "sm" | "md" | "header" | "lg" | "footer" | "hero";
+  /** Use the header/footer wordmark asset when true (default). */
+  brand?: boolean;
 };
 
 const sizeClasses = {
@@ -19,13 +21,14 @@ export default function Logo({
   className = "",
   priority = false,
   size = "md",
+  brand = true,
 }: Props) {
   return (
     <Image
-      src="/logo.png"
+      src={brand ? "/brand/header-logo.png" : "/logo.png"}
       alt="Bake Affairs by Ayesha"
-      width={498}
-      height={501}
+      width={500}
+      height={500}
       priority={priority}
       className={`object-contain ${sizeClasses[size]} ${className}`}
     />

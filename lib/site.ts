@@ -14,7 +14,7 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Menu", href: "/menu" },
-  { label: "Gallery", href: "/gallery" },
+  { label: "Shop", href: "/shop" },
   { label: "Order", href: "/order" },
   { label: "Policies", href: "/policies" },
 ];
@@ -33,9 +33,9 @@ export const homeTeasers = [
     emoji: "🎂",
   },
   {
-    title: "Gallery",
-    description: "A peek at recent bakes, celebration cakes and sweet little details.",
-    href: "/gallery",
+    title: "Shop",
+    description: "Browse recent cakes and celebration bakes from our kitchen.",
+    href: "/shop",
     emoji: "📸",
   },
 ];

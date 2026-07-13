@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Logo from "@/components/Logo";
+import HeroSparkles from "@/components/HeroSparkles";
 import { site } from "@/lib/site";
 import { ArrowRight } from "./icons";
 
@@ -18,6 +19,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-maroon-glow" />
       <div className="pointer-events-none absolute -left-24 top-16 h-64 w-64 rounded-full bg-maroon-blush/40 blur-3xl lg:h-80 lg:w-80" />
       <div className="pointer-events-none absolute -right-24 bottom-8 h-64 w-64 rounded-full bg-maroon/5 blur-3xl lg:h-80 lg:w-80" />
+      <HeroSparkles />
 
       <div className="container-px relative grid w-full grid-cols-1 items-center gap-6 py-24 sm:gap-8 sm:py-28 lg:grid-cols-2 lg:items-end lg:gap-12 lg:pb-10 lg:pt-28 xl:gap-16">
         <div className="w-full max-w-xl text-center lg:mb-8 lg:max-w-none lg:self-center lg:text-left">
@@ -84,6 +86,7 @@ export default function Hero() {
 
             <div className="relative z-10 shrink-0 px-3 pt-3 sm:px-4 sm:pt-4">
               <Logo
+                brand={false}
                 size="md"
                 priority
                 className="mx-auto h-10 w-auto drop-shadow-logo sm:h-12 lg:h-14"

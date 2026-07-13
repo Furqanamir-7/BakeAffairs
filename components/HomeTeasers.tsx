@@ -15,7 +15,7 @@ export default function HomeTeasers() {
             </h2>
             <div className="peach-divider" aria-hidden="true" />
             <p className="text-body mt-4 text-sm sm:text-lg">
-              Browse our story, menu and gallery — then place your order when
+              Browse our story, menu and shop — then place your order when
               something catches your eye.
             </p>
           </div>

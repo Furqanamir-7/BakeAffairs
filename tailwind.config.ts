@@ -68,11 +68,25 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
           "50%": { transform: "translateY(-8px) rotate(4deg)" },
         },
+        "shop-scroll": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-50%)" },
+        },
+        "shop-scroll-reverse": {
+          "0%": { transform: "translateY(-50%)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        "sparkle-twinkle": {
+          "0%, 100%": { opacity: "0.2", transform: "scale(0.85)" },
+          "50%": { opacity: "1", transform: "scale(1.15)" },
+        },
       },
       animation: {
         floaty: "floaty 6s ease-in-out infinite",
         "loader-dot": "loader-dot 1.1s ease-in-out infinite",
         "motif-drift": "motif-drift 5.5s ease-in-out infinite",
+        "shop-scroll": "shop-scroll linear infinite",
+        "shop-scroll-reverse": "shop-scroll-reverse linear infinite",
       },
     },
   },

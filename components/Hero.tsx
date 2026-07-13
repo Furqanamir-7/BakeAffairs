@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import HeroSparkles from "@/components/HeroSparkles";
 import { site } from "@/lib/site";
 import { ArrowRight } from "./icons";
 
@@ -15,10 +14,9 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-maroon-glow" />
       <div className="pointer-events-none absolute -left-24 top-16 h-64 w-64 rounded-full bg-maroon-blush/40 blur-3xl lg:h-80 lg:w-80" />
       <div className="pointer-events-none absolute -right-24 bottom-8 h-64 w-64 rounded-full bg-maroon/5 blur-3xl lg:h-80 lg:w-80" />
-      <HeroSparkles />
 
       <div className="container-px relative grid w-full grid-cols-1 items-center gap-6 py-24 sm:gap-8 sm:py-28 lg:grid-cols-2 lg:items-end lg:gap-12 lg:pb-10 lg:pt-28 xl:gap-16">
-        <div className="w-full max-w-xl text-center lg:mb-8 lg:max-w-none lg:self-center lg:text-left">
+        <div className="relative z-10 w-full max-w-xl text-center lg:mb-8 lg:max-w-none lg:self-center lg:text-left">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

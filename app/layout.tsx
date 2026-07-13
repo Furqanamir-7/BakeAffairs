@@ -3,6 +3,7 @@ import { Playfair_Display, Jost, Cormorant_Garamond } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageLoader from "@/components/PageLoader";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -75,6 +76,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

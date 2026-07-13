@@ -6,9 +6,16 @@ export const site = {
   tagline: "Baked with love, crafted with care",
   instagram: "https://www.instagram.com/bakeaffairsbyayesha/",
   instagramHandle: "@bakeaffairsbyayesha",
-  whatsapp: "https://wa.me/92XXXXXXXXXX",
+  whatsapp: "https://wa.me/923234754992",
+  whatsappNumber: "923234754992",
   email: "hello@bakeaffairs.pk",
 };
+
+/** Prefilled WhatsApp order link for a cake/item name. */
+export function whatsappOrderLink(itemName: string) {
+  const text = `Hey i wanna order ${itemName}`;
+  return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`;
+}
 
 export const navLinks = [
   { label: "Home", href: "/" },

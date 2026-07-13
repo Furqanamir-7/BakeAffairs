@@ -5,7 +5,7 @@ import Shop from "@/components/Shop";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Browse recent custom cakes and celebration bakes from Bake Affairs by Ayesha in Lahore.",
+    "Order custom cakes from Bake Affairs by Ayesha — browse recent bakes and message us on WhatsApp.",
 };
 
 export default function ShopPage() {
@@ -13,8 +13,8 @@ export default function ShopPage() {
     <>
       <PageIntro
         eyebrow="From our kitchen"
-        title="Shop the Look"
-        description="Scroll through recent cakes and celebration bakes — then order something made just for you."
+        title="Shop & Order"
+        description="Pick a cake you love, tap Order Now, and we’ll continue on WhatsApp."
       />
       <Shop compact />
     </>

@@ -1,56 +1,73 @@
 "use client";
 
-/** Soft sparkling dots for the hero background. */
-export default function HeroSparkles() {
-  const sparks = [
-    { top: "12%", left: "8%", size: 3, delay: "0s" },
-    { top: "18%", left: "22%", size: 2, delay: "0.4s" },
-    { top: "10%", left: "68%", size: 2.5, delay: "0.8s" },
-    { top: "22%", left: "88%", size: 3, delay: "1.2s" },
-    { top: "35%", left: "6%", size: 2, delay: "0.2s" },
-    { top: "42%", left: "92%", size: 2.5, delay: "1s" },
-    { top: "55%", left: "14%", size: 2, delay: "1.6s" },
-    { top: "58%", left: "78%", size: 3, delay: "0.6s" },
-    { top: "70%", left: "4%", size: 2.5, delay: "1.4s" },
-    { top: "74%", left: "96%", size: 2, delay: "0.3s" },
-    { top: "82%", left: "28%", size: 3, delay: "1.1s" },
-    { top: "86%", left: "62%", size: 2, delay: "0.9s" },
-    { top: "28%", left: "48%", size: 2, delay: "1.8s" },
-    { top: "48%", left: "38%", size: 2.5, delay: "0.5s" },
-    { top: "64%", left: "52%", size: 2, delay: "1.5s" },
-    { top: "16%", left: "40%", size: 2, delay: "2s" },
-    { top: "90%", left: "18%", size: 2.5, delay: "0.7s" },
-    { top: "38%", left: "72%", size: 2, delay: "1.3s" },
-  ];
+const COLORS = [
+  "#6D1213",
+  "#922A28",
+  "#C45A5A",
+  "#E8C5C0",
+  "#F5E0DC",
+  "#D4A8A2",
+  "#8B3A3C",
+];
 
+/** Deterministic sprinkle field — big capsule sprinkles across the hero. */
+const SPRINKLES = Array.from({ length: 72 }, (_, i) => {
+  const col = i % 9;
+  const row = Math.floor(i / 9);
+  const jitterX = ((i * 17) % 11) - 5;
+  const jitterY = ((i * 13) % 9) - 4;
+  return {
+    id: i,
+    left: `${6 + col * 11 + jitterX}%`,
+    top: `${4 + row * 11.5 + jitterY}%`,
+    w: 10 + (i % 5) * 4,
+    h: 28 + (i % 6) * 6,
+    rotate: -55 + ((i * 37) % 110),
+    color: COLORS[i % COLORS.length],
+    delay: `${(i % 12) * 0.18}s`,
+    duration: `${3.2 + (i % 7) * 0.35}s`,
+    opacity: 0.35 + (i % 5) * 0.1,
+  };
+});
+
+export default function HeroSparkles() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      {sparks.map((s, i) => (
+    <div
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      aria-hidden="true"
+    >
+      {SPRINKLES.map((s) => (
         <span
-          key={i}
-          className="absolute rounded-full bg-maroon/35 shadow-[0_0_8px_rgba(109,18,19,0.35)]"
+          key={s.id}
+          className="absolute rounded-full shadow-[0_2px_6px_rgba(109,18,19,0.12)]"
           style={{
-            top: s.top,
             left: s.left,
-            width: s.size,
-            height: s.size,
-            animation: `sparkle-twinkle 2.8s ease-in-out ${s.delay} infinite`,
+            top: s.top,
+            width: s.w,
+            height: s.h,
+            backgroundColor: s.color,
+            opacity: s.opacity,
+            transform: `rotate(${s.rotate}deg)`,
+            animation: `sparkle-twinkle ${s.duration} ease-in-out ${s.delay} infinite`,
           }}
         />
       ))}
-      {sparks.slice(0, 8).map((s, i) => (
+
+      {/* Extra chunky round “candy” sprinkles */}
+      {SPRINKLES.filter((_, i) => i % 3 === 0).map((s) => (
         <span
-          key={`cross-${i}`}
-          className="absolute text-maroon/25"
+          key={`dot-${s.id}`}
+          className="absolute rounded-full"
           style={{
-            top: s.top,
-            left: `calc(${s.left} + 3%)`,
-            fontSize: 10 + (i % 3) * 2,
-            animation: `sparkle-twinkle 3.4s ease-in-out ${s.delay} infinite`,
+            left: `calc(${s.left} + 2.5%)`,
+            top: `calc(${s.top} + 3%)`,
+            width: 12 + (s.id % 4) * 4,
+            height: 12 + (s.id % 4) * 4,
+            backgroundColor: COLORS[(s.id + 2) % COLORS.length],
+            opacity: 0.4,
+            animation: `sparkle-twinkle ${s.duration} ease-in-out ${s.delay} infinite`,
           }}
-        >
-          ✦
-        </span>
+        />
       ))}
     </div>
   );

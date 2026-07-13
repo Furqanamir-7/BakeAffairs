@@ -149,7 +149,7 @@ export default function PageLoader() {
           ))}
 
           <div className="relative z-10 flex flex-col items-center px-6">
-            <Logo size="hero" priority className="drop-shadow-logo" />
+            <Logo brand={false} size="hero" priority className="drop-shadow-logo" />
             <p className="mt-3 font-serif text-sm uppercase tracking-[0.28em] text-maroon sm:text-base">
               Bake Affairs
             </p>

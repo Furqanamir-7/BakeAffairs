@@ -16,7 +16,7 @@ export default function ShopPage() {
         title="Shop & Order"
         description="Pick a cake you love, tap Order Now, and we’ll continue on WhatsApp."
       />
-      <Shop compact />
+      <Shop />
     </>
   );
 }

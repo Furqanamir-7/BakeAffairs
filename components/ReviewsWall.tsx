@@ -87,7 +87,7 @@ export default function ReviewsWall() {
             <DriftColumn
               key={`m-${i}`}
               items={col}
-              duration={22 + i * 5}
+              duration={48 + i * 8}
               reverse={i % 2 === 1}
             />
           ))}
@@ -98,7 +98,7 @@ export default function ReviewsWall() {
             <DriftColumn
               key={`d-${i}`}
               items={col}
-              duration={26 + i * 4}
+              duration={52 + i * 6}
               reverse={i % 2 === 1}
             />
           ))}

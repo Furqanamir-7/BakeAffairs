@@ -2,7 +2,7 @@
 
 import { site } from "@/lib/site";
 
-/** Maroon floating WhatsApp button — icon fully visible inside the circle. */
+/** Maroon floating WhatsApp button with a correctly framed logo. */
 export default function WhatsAppFloat() {
   return (
     <a
@@ -10,15 +10,17 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-maroon text-cream shadow-lift transition-transform duration-300 hover:scale-110 hover:bg-maroon-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bottom-7 sm:right-7 sm:h-16 sm:w-16"
+      className="fixed bottom-5 right-5 z-[60] grid h-14 w-14 place-items-center rounded-full bg-maroon text-cream shadow-lift transition-transform duration-300 hover:scale-110 hover:bg-maroon-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bottom-7 sm:right-7 sm:h-16 sm:w-16"
     >
+      {/* Standard WhatsApp glyph with padded viewBox so nothing clips */}
       <svg
-        viewBox="0 0 32 32"
-        className="h-[1.65rem] w-[1.65rem] sm:h-8 sm:w-8"
+        viewBox="0 0 24 24"
+        className="block h-[55%] w-[55%] shrink-0"
         fill="currentColor"
         aria-hidden="true"
+        focusable="false"
       >
-        <path d="M16.04 3.2c-7.08 0-12.84 5.75-12.84 12.84 0 2.27.6 4.47 1.72 6.41L3.2 28.8l6.53-1.71a12.8 12.8 0 0 0 6.31 1.61h.01c7.08 0 12.84-5.76 12.84-12.84 0-3.43-1.34-6.66-3.76-9.08A12.75 12.75 0 0 0 16.04 3.2Zm0 2.33c2.81 0 5.45 1.1 7.44 3.08a10.47 10.47 0 0 1 3.08 7.43c0 5.81-4.73 10.53-10.52 10.53-1.93 0-3.82-.52-5.47-1.5l-.39-.23-4.04 1.06 1.08-3.94-.26-.4a10.48 10.48 0 0 1-1.61-5.57c0-5.8 4.72-10.52 10.53-10.52Zm-3.5 5.66c-.23 0-.61.09-.93.44-.32.35-1.23 1.2-1.23 2.94s1.26 3.4 1.44 3.64c.18.23 2.47 3.78 6.08 5.3.85.36 1.52.58 2.04.75.85.27 1.63.23 2.25.14.69-.1 2.11-.87 2.41-1.7.3-.83.3-1.54.21-1.69-.09-.15-.32-.23-.68-.41-.36-.18-2.11-1.04-2.44-1.16-.32-.11-.56-.17-.8.18-.23.35-.92 1.15-1.13 1.39-.2.23-.41.26-.76.09-.35-.18-1.5-.55-2.85-1.76-1.05-.93-1.76-2.1-1.97-2.45-.2-.35-.02-.54.15-.71.16-.15.35-.41.53-.62.18-.2.23-.35.35-.59.11-.23.06-.44-.03-.62-.09-.18-.8-1.94-1.1-2.65-.29-.69-.58-.59-.8-.6-.21-.01-.44-.01-.68-.01Z" />
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
       </svg>
     </a>
   );

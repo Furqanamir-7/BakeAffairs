@@ -1,0 +1,16 @@
+export const reviewImages = [
+  { src: "/reviews/review-01.png", alt: "Customer review message", tall: false },
+  { src: "/reviews/review-02.png", alt: "Customer review about cake taste", tall: true },
+  { src: "/reviews/review-03.png", alt: "Customer thank-you review", tall: false },
+  { src: "/reviews/review-04.png", alt: "Happy customer chat review", tall: true },
+  { src: "/reviews/review-05.png", alt: "Cake compliment from a client", tall: false },
+  { src: "/reviews/review-06.png", alt: "Customer loved the cake", tall: false },
+  { src: "/reviews/review-07.png", alt: "Review with cake photo", tall: true },
+  { src: "/reviews/review-08.png", alt: "Kind words from a customer", tall: false },
+  { src: "/reviews/review-09.png", alt: "Celebration cake review", tall: true },
+  { src: "/reviews/review-10.png", alt: "Customer feedback screenshot", tall: false },
+  { src: "/reviews/review-11.png", alt: "Sweet customer review", tall: false },
+  { src: "/reviews/review-12.png", alt: "Order feedback from client", tall: true },
+  { src: "/reviews/review-13.png", alt: "Bake Affairs customer review", tall: false },
+  { src: "/reviews/review-14.png", alt: "Thank you message from customer", tall: true },
+] as const;

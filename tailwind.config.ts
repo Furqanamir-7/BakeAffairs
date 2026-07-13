@@ -76,6 +76,17 @@ const config: Config = {
           "0%": { transform: "translateY(-50%)" },
           "100%": { transform: "translateY(0)" },
         },
+        // Softer ease-in-out drift that reverses (unlike shop's linear loop)
+        "reviews-drift": {
+          "0%": { transform: "translateY(0) scale(1)" },
+          "50%": { transform: "translateY(-42%) scale(1.01)" },
+          "100%": { transform: "translateY(0) scale(1)" },
+        },
+        "reviews-drift-reverse": {
+          "0%": { transform: "translateY(-42%) scale(1)" },
+          "50%": { transform: "translateY(0) scale(1.01)" },
+          "100%": { transform: "translateY(-42%) scale(1)" },
+        },
         "sparkle-twinkle": {
           "0%, 100%": { opacity: "0.2", transform: "scale(0.85)" },
           "50%": { opacity: "1", transform: "scale(1.15)" },
@@ -87,6 +98,8 @@ const config: Config = {
         "motif-drift": "motif-drift 5.5s ease-in-out infinite",
         "shop-scroll": "shop-scroll linear infinite",
         "shop-scroll-reverse": "shop-scroll-reverse linear infinite",
+        "reviews-drift": "reviews-drift ease-in-out infinite",
+        "reviews-drift-reverse": "reviews-drift-reverse ease-in-out infinite",
       },
     },
   },

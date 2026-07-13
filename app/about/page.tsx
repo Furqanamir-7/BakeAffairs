@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageIntro from "@/components/PageIntro";
 import About from "@/components/About";
+import ReviewsWall from "@/components/ReviewsWall";
 
 export const metadata: Metadata = {
   title: "About",
@@ -17,6 +18,7 @@ export default function AboutPage() {
         description="It all started in 2022 — a home kitchen, a few orders at a time, and a lot of love."
       />
       <About compact />
+      <ReviewsWall />
     </>
   );
 }

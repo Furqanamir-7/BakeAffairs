@@ -61,8 +61,10 @@ export const menuSections: MenuSection[] = [
     id: "cupcakes",
     title: "Cupcakes",
     items: [
-      { name: "6 pcs", price: "Rs. 1,300" },
-      { name: "12 pcs", price: "Rs. 2,200" },
+      { name: "Whipped Cream Cupcakes — 6 pcs", price: "Rs. 1,300" },
+      { name: "Whipped Cream Cupcakes — 12 pcs", price: "Rs. 2,200" },
+      { name: "Buttercream Cupcakes — 6 pcs", price: "Rs. 2,000" },
+      { name: "Buttercream Cupcakes — 12 pcs", price: "Rs. 3,500" },
       { name: "One Bite (20 pcs)", price: "Rs. 2,000" },
       { name: "Boucake", price: "Rs. 2,700" },
     ],
